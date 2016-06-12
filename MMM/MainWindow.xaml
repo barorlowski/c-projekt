@@ -5,8 +5,112 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="700" Width="1030">
     <Grid>
-        
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="Silver"  Margin="2">
+
+            <Label Content="Parametry" FontStyle="Italic" FontSize="26" HorizontalAlignment="Center" Width="131" Height="44" Margin="82,0,75,0" RenderTransformOrigin="0.492,-0.05"/>
+
+            <StackPanel Orientation="Horizontal" Margin="10,5,10,5">
+                <Label Content="Pary płodne"  FontSize="15" Width="145"/>
+                <Button Content="-" Width="25" Click="MinusParyPłodneButton_Click"/>
+                <TextBox Width="40" x:Name="ParyPłodneTextBox" FontSize="15" TextAlignment="Center" Text="{Binding ParyPłodne}"/>
+                <Button Content="+" Width="25" Click="PlusParyPłodneButton_CLick" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10,5,10,5">
+                <Label Content="Pary niepłodne" FontSize="15" Width="145"/>
+                <Button Content="-" Width="25" Click="MinusParyNiePłodneButton_Click"/>
+                <TextBox Width="40" x:Name="ParyNiePłodneTextBox" FontSize="15" TextAlignment="Center" Text="{Binding ParyNiePłodne}" />
+                <Button Content="+" Width="25" Click="PlusParyNiePłodneButton_CLick" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10,5,10,5">
+                <Label Content="Wilki" FontSize="15" Width="145"/>
+                <Button Content="-" Width="25" Click="MinusWilkiButton_Click"/>
+                <TextBox Width="40" x:Name="WilkiTextBox" FontSize="15" TextAlignment="Center" Text="{Binding Wilki}" />
+                <Button Content="+" Width="25" Click="PlusWilkiButton_CLick" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal " Margin="10,5,10,5">
+                <Label Content="Żarłoczność wilków" FontSize="15" Width="145"/>
+                <ComboBox Width="90" FontSize="15" x:Name="WilkiComboBox"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10,5,10,5">
+                <Label Content="Lisy" FontSize="15" Width="145"/>
+                <Button Content="-" Width="25" Click="MinusLisyButton_Click"/>
+                <TextBox Width="40" x:Name="LisyTextBox" FontSize="15"  TextAlignment="Center" Text="{Binding Lisy}" />
+                <Button Content="+" Width="25" Click="PlusLisyButton_CLick" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10,5,10,5">
+                <Label Content="Żarłoczność lisów" FontSize="15" Width="145"/>
+                <ComboBox Width="90"  FontSize="15" x:Name="LisyComboBox"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10,5,10,5">
+                <Label Content="Liczba Miesiecy" FontSize="15" Width="145"/>
+                <Button Content="-" Width="25"  Click="MinusLiczbaMiesiecyButton_Click"/>
+                <TextBox Width="40" x:Name="LiczbaMiesiecyTextBox" FontSize="15" TextAlignment="Center" Text="{Binding LiczbaMiesiecy}"  />
+                <Button Content="+" Width="25" Click="PlusLiczbaMiesiecyButton_CLick" />
+            </StackPanel>
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Background="Silver" Margin="2,2,2,2" Grid.ColumnSpan="2" >
+            <Label HorizontalAlignment="Left" Content="Instrukcja" FontSize="30" FontStyle="Italic"  Width="150" />
+
+            <TextBlock FontSize="16" FontStyle="Italic" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="10,0,0,0" Width="998" Height="130">
+                Program służy do modelowania populacji królików, która jest podzielona na pary płodne i niepłodne. 
+                Każda para płodna, co miesiąc wydaje nowe pokolenie niepłodne, które w kolejnym miesiącu staje się płodne.
+                Na rozwój środowiska królików mają wpływ również drapieżnicy, w tym przypadku, to wilki i lisy. 
+                Żarłoczność danego drapieżnika określa, ile królików w ciągu miesiąca zje lub zabije. Mała - 1, Średnia - 2, Duża - 3.
+                Liczba miesięcy określa okres, dla którego chcemy przeprowadzić symulację populacji. 
+                Wynik końcowy wyznacza liczbę par płodnych, niepłodnych i ogólną liczbę par królików żyjących w danej populacji 
+                po określonej liczbie miesięcy.
+                Wyniki swoich badań możemy zapisać do pliku lub z niego wczytać jeśli wcześniej przeprowadzaliśmy symulacje.
+
+            </TextBlock>
+        </StackPanel>
+
+        <Button x:Name="Symuluj" FontSize="16" Content="Symuluj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="35,331,0,0" RenderTransformOrigin="0.733,0.75" Height="40" Click="Symuluj_Click"/>
+        <Button x:Name="UsuńButton" FontSize="16" Content="Usuń" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="150,331,0,0" Height="40" Click="UsuńButton_Click"/>
+        <Button x:Name="ZapiszButton" FontSize="16" Content="Zapisz" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="35,426,0,0" Height="40" Click="ZapiszButton_Click"/>
+        <Button x:Name="WczytajButton" FontSize="16" Content="Wczytaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="150,426,0,0" Height="40" RenderTransformOrigin="0.056,0.5" Click="WczytajButton_Click"/>
+        <Button x:Name="WyczyscListe" FontSize="16" Content="Wyczyść Listę" HorizontalAlignment="Left" VerticalAlignment="Top" Height="36" Width="205" Click="WyczyscListe_Click" Margin="35,380,0,0"/>
+
+        <TextBlock Background ="WhiteSmoke" FontSize="25" Grid.Column="1" Margin="0,2,271,393" TextAlignment="Center" HorizontalAlignment="Center" Width="450"> Wprowadzone parametry</TextBlock>
+        <TextBlock Background ="Gray" FontSize="25" Grid.Column="1" Margin="456,2,2,393" TextAlignment="Center" HorizontalAlignment="Center" Width="270"><Run Text="Obliczenia"/></TextBlock>
+        <ListView Name="ListView1" Background="Silver"  Margin="2,41,2,2"  Grid.Column="1" ItemsSource="{Binding PopulacjaList}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Pary płodne" Width="72" DisplayMemberBinding="{Binding ParyPłodne}"/>
+                    <GridViewColumn Header="Pary niepłodne" Width="88" DisplayMemberBinding="{Binding ParyNiePłodne}"/>
+                    <GridViewColumn Header="Wilki" Width="40" DisplayMemberBinding="{Binding Wilki}"/>
+                    <GridViewColumn Header="Żar. Wilków" Width="70" DisplayMemberBinding="{Binding ŻarłocznośćWilków}"/>
+                    <GridViewColumn Header="Lisy" Width="40" DisplayMemberBinding="{Binding Lisy}"/>
+                    <GridViewColumn Header="Żar. Lisów" Width="70" DisplayMemberBinding="{Binding ŻarłocznośćLisów}"/>
+                    <GridViewColumn Header="L. miesiecy" Width="70" DisplayMemberBinding="{Binding LiczbaMiesiecy}"/>
+                    <GridViewColumn Header="Pary płodne" Width="72" DisplayMemberBinding="{Binding PlodneKonc}"/>
+                    <GridViewColumn Header="Pary niepłodne" Width="88" DisplayMemberBinding="{Binding NieplodneKonc}"/>
+                    <GridViewColumn Header="Suma" Width="115" DisplayMemberBinding="{Binding SumaKonc}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
     </Grid>
 </Window>
